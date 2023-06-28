@@ -1,4 +1,4 @@
-require('../models/User');
+require('../models/Category');
 const sequelize = require('../utils/connection');
 const user = require('./createData/user');
 
