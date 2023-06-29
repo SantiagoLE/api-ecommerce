@@ -63,6 +63,18 @@ test("GET -> 'BASE_URL', should return status code 200 and res.body.length === 1
 })
 
 
+test("GET -> 'BASE_URL?category = category.id', should return status code 200, res.body.length === 1 and res.body[0] to be defined", async () => {
+
+    const res = await supertest(app)
+        .get(`${BASE_URL}?category${category.id}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveLength(1)
+    expect(res.body[0]).toBeDefined()
+})
+
+
+
 test("GET ONE -> 'BASE_URL/:id', should return status code 200 and res.body == Yamaha R1", async () => {
 
     const res = await supertest(app)
