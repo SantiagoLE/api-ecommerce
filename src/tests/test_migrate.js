@@ -1,6 +1,8 @@
+require ("../models")
 require('../models/Category');
 const sequelize = require('../utils/connection');
 const user = require('./createData/user');
+
 
 // importar index models y modelos sin relaciones
 // require("../models")
