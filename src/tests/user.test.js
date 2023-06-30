@@ -23,8 +23,7 @@ test("GET -> 'BASE_URL' , should return status code 200 and res.body to have len
     const res = await await supertest(app)
         .get(BASE_URL)
         .set('Authorization', `Bearer ${TOKEN}`)
-    console.log(TOKEN)
-
+   
     expect(res.status).toBe(200)
     expect(res.body).toHaveLength(1)
 })

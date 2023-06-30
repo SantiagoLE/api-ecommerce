@@ -13,16 +13,20 @@ const getAll = catchError(async (req, res) => {
 
 const create = catchError(async (req, res) => {
     const userId = req.user.id
-    const {quatity,productId} = req.body
-    const body = {userId, quatity, productId}
+    const {quantity, productId} = req.body
+    const body = {userId, quantity, productId}
     const result = await Cart.create(body);
     return res.status(201).json(result);
 });
 
 
 const remove = catchError(async (req, res) => {
+
     const { id } = req.params;
-    const remove = await Cart.destroy({ where: { id } });
+    const userId = req.user.id
+
+    const remove = await Cart.destroy({ where: { id, userId } });
+    
     if (!remove) return res.sendStatus(404);
     return res.sendStatus(204);
 });

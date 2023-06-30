@@ -20,6 +20,7 @@ beforeAll(async () => {
         .post(BASE_URL_USERS)
         .send(user)
 
+        
     TOKEN = res.body.token
 })
 
