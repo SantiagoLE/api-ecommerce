@@ -5,7 +5,7 @@ require("../models")
 
 
 const BASE_URL_USER = '/api/v1/users/login'
-const URL_BASE = '/api/v1/cart'
+const BASE_URL = '/api/v1/cart'
 let TOKEN
 let userId
 let product
@@ -27,7 +27,7 @@ beforeAll(async () => {
 })
 
 
-test("POST -> 'URL_BASE',should return status code 201 and res.body.quantity === body.quantity", async () => {
+test("POST -> 'BASE_URL',should return status code 201 and res.body.quantity === body.quantity", async () => {
 
     const productBody = {
         title: "Yamaha R1",
@@ -44,7 +44,7 @@ test("POST -> 'URL_BASE',should return status code 201 and res.body.quantity ===
     }
 
     const res = await supertest(app)
-        .post(URL_BASE)
+        .post(BASE_URL)
         .send(cartBody)
         .set("Authorization", `Bearer ${TOKEN}`)
 
@@ -55,9 +55,9 @@ test("POST -> 'URL_BASE',should return status code 201 and res.body.quantity ===
 })
 
 
-test("GET -> 'URL_BASE', sholud status code 200 and res.body.length === 1", async () => {
+test("GET -> 'BASE_URL', sholud status code 200 and res.body.length === 1", async () => {
     const res = await supertest(app)
-        .get(URL_BASE)
+        .get(BASE_URL)
         .set("Authorization", `Bearer ${TOKEN}`)
 
     expect(res.status).toBe(200)
@@ -65,13 +65,13 @@ test("GET -> 'URL_BASE', sholud status code 200 and res.body.length === 1", asyn
 })
 
 
-test("PUT -> 'URL_BASE/:id',should return status code 200 and res.body.quantity === cartBody.quantity", async () => {
+test("PUT -> 'BASE_URL/:id',should return status code 200 and res.body.quantity === cartBody.quantity", async () => {
   
     const cartBody = {
         quantity: 2
     }
     const res = await supertest(app)
-        .put(`${URL_BASE}/${cartId}`)
+        .put(`${BASE_URL}/${cartId}`)
         .send(cartBody)
         .set("Authorization", `Bearer ${TOKEN}`)
 
@@ -80,9 +80,9 @@ test("PUT -> 'URL_BASE/:id',should return status code 200 and res.body.quantity 
 })
 
 
-test("DELETE -> 'URL_BASE/:id',should return status code 204", async () => {
+test("DELETE -> 'BASE_URL/:id',should return status code 204", async () => {
     const res = await supertest(app)
-        .delete(`${URL_BASE}/${cartId}`)
+        .delete(`${BASE_URL}/${cartId}`)
         .set("Authorization", `Bearer ${TOKEN}`)
 
     expect(res.status).toBe(204)
