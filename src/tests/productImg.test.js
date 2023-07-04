@@ -29,10 +29,10 @@ const imagePath = path.join(__dirname, "..", "public", "BMW_M1000RR.jpg")
     const res = await supertest(app)
     .post(BASE_URL_PRODUCT_IMG)
     .set('Authorization', `Bearer ${TOKEN}`)
-    .attach("image", imagePath)
+    .attach('image', imagePath)
 
     productImgId = res.body.id
-
+console.log(imagePath)
     expect(res.status).toBe(201)
     expect(res.body.url).toBeDefined()
     expect(res.body.filename).toBeDefined()
